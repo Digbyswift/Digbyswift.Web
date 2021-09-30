@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 
-namespace Digbyswift.Web.Extensions
+namespace Digbyswift.Web.Mvc.Extensions
 {
     public static class HtmlStringExtensions
     {

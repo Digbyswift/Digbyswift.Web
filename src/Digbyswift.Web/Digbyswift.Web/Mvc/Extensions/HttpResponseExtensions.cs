@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 
-namespace Digbyswift.Web.Extensions
+namespace Digbyswift.Web.Mvc.Extensions
 {
 	public static class HttpResponseMessageExtensions
 	{
