@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web.Mvc;
 using Digbyswift.Web.Extensions;
+using Digbyswift.Web.Mvc.Extensions;
 using Newtonsoft.Json;
 
 namespace Digbyswift.Web.Mvc.ActionResults

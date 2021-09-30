@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 
-namespace Digbyswift.Web.Mvc.Attributes.Events
+namespace Digbyswift.Web.Mvc.Attributes
 {
     /// <summary>
     /// Validates that a request has come from the same
