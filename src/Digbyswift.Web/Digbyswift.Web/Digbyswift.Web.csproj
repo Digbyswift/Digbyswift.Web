@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Digbyswift.Web</Title>
+        <Authors>Digbyswift Ltd</Authors>
+        <Copyright>Copyright © Digbyswift Ltd</Copyright>
+        <PackageProjectUrl>https://github.com/digbyswift/Digbyswift.Web/</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/digbyswift/Digbyswift.Web/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/digbyswift/Digbyswift.Web/</RepositoryUrl>
+        <PackageTags>c#</PackageTags>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <TargetFramework>net462</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Mvc" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Digbyswift.Core" Version="1.0.0" />
+      <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net462'" />
+      <Reference Include="System.Web.Abstractions" Condition="'$(TargetFramework)' == 'net462'" />
+      <Reference Include="System.Web.Routing" Condition="'$(TargetFramework)' == 'net462'" />
+    </ItemGroup>
+
+</Project>
