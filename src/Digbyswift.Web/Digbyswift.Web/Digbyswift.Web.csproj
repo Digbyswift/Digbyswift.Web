@@ -9,23 +9,35 @@
         <PackageLicenseUrl>https://github.com/digbyswift/Digbyswift.Web/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/digbyswift/Digbyswift.Web/</RepositoryUrl>
         <PackageTags>c#</PackageTags>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.3</AssemblyVersion>
         <TargetFramework>net462</TargetFramework>
+        <PackageVersion>1.0.3</PackageVersion>
+        <FileVersion>1.0.3</FileVersion>
+        <LangVersion>8</LangVersion>
+        <PackageIcon>package-icon.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Digbyswift.Core" Version="1.0.0" />
+      <PackageReference Include="Digbyswift.Core" Version="1.0.3" />
       <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
       <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.3" />
       <PackageReference Include="morelinq" Version="3.3.2" />
       <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-      <PackageReference Include="X.PagedList" Version="8.1.0" />
+      <PackageReference Include="X.PagedList" Version="8.0.7" />
     </ItemGroup>
 
     <ItemGroup>
       <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net462'" />
       <Reference Include="System.Web.Abstractions" Condition="'$(TargetFramework)' == 'net462'" />
       <Reference Include="System.Web.Routing" Condition="'$(TargetFramework)' == 'net462'" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\..\..\package-icon.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>package-icon.png</Link>
+      </None>
     </ItemGroup>
 
 </Project>

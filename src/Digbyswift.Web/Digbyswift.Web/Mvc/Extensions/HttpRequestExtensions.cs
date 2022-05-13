@@ -29,7 +29,7 @@ namespace Digbyswift.Web.Mvc.Extensions
 
         public static string RootUrl(this HttpRequestBase request)
         {
-            return request.Url?.GetLeftPart(UriPartial.Authority);
+            return request.Url?.BaseUrl();
         }
         
         public static string IpAddress(this HttpRequest request)
