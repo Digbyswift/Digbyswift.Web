@@ -1,10 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿#if !NET5_0_OR_GREATER
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
-using Digbyswift.Web.Mvc.Attributes;
+using Digbyswift.Web.Net4.Mvc.Attributes;
 
-namespace Digbyswift.Web.Mvc.ModelBinders
+namespace Digbyswift.Web.Net4.Mvc.ModelBinders
 {
     public class AliasModelBinder : DefaultModelBinder
     {
@@ -31,3 +32,4 @@ namespace Digbyswift.Web.Mvc.ModelBinders
         }
     }
 }
+#endif

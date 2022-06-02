@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoreLinq.Extensions;
 
 namespace Digbyswift.Web.Mvc.Extensions
 {
-	public static class EnumerableExtensions
+	public static class SelectListItemExtensions
 	{
-		#region ToSelectList
-
         public static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> enumerable, Func<T, string> text, Func<T, string> value)
         {
             return enumerable.Select(item => new SelectListItem { Text = text(item), Value = value(item) });
@@ -50,23 +48,21 @@ namespace Digbyswift.Web.Mvc.Extensions
 
 		public static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> enumerable, Func<T, string> text, Func<T, string> value, string defaultText)
 		{
-			return GetDetaultSelectListItem(defaultText)
+			return GetDefaultSelectListItem(defaultText)
 				.Concat(enumerable.Select(item => new SelectListItem { Text = text(item), Value = value(item) }))
 				.ToList();
 		}
 
 		public static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> enumerable, Func<T, string> text, Func<T, int> value, string defaultText)
 		{
-			return GetDetaultSelectListItem(defaultText)
+			return GetDefaultSelectListItem(defaultText)
 				.Concat(enumerable.Select(item => new SelectListItem { Text = text(item), Value = value(item).ToString() }))
 				.ToList();
 		}
 
-		private static IEnumerable<SelectListItem> GetDetaultSelectListItem(string defaultText = null)
+		private static IEnumerable<SelectListItem> GetDefaultSelectListItem(string defaultText = null)
 		{
 			yield return new SelectListItem { Text = defaultText, Value = defaultText };
 		}
-
-		#endregion
 	}
 }

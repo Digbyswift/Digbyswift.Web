@@ -1,10 +1,10 @@
-﻿// http://blogs.msdn.com/b/kiranchalla/archive/2012/09/04/receiving-request-file-or-data-in-streamed-mode-at-a-web-api-service.aspx
-
+﻿#if NET461
 using System.Web;
 using System.Web.Http.WebHost;
 
-namespace Digbyswift.Web.WebApi
+namespace Digbyswift.Web.Net4.WebApi
 {
+	// http://blogs.msdn.com/b/kiranchalla/archive/2012/09/04/receiving-request-file-or-data-in-streamed-mode-at-a-web-api-service.aspx
 	public class NoBufferPolicySelector : WebHostBufferPolicySelector
 	{
 		public override bool UseBufferedInputStream(object hostContext)
@@ -18,6 +18,6 @@ namespace Digbyswift.Web.WebApi
 
             return base.UseBufferedInputStream(hostContext);
 		}
-
 	}
 }
+#endif

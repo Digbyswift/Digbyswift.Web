@@ -1,5 +1,8 @@
-﻿using System.Net;
-using System.Web.Mvc;
+﻿using System;
+using System.Net;
+using Digbyswift.Web.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Digbyswift.Web.Mvc.Attributes
 {
@@ -10,28 +13,25 @@ namespace Digbyswift.Web.Mvc.Attributes
     /// </summary>
     public sealed class ValidateXhrRequestAttribute : ActionFilterAttribute
     {
-        private static readonly HttpStatusCodeResult BadRequestResult = new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
-
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!filterContext.HttpContext.Request.IsAjaxRequest())
+            if (!context.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.Result = BadRequestResult;
+                context.Result = new StatusCodeResult((int)HttpStatusCode.BadRequest);
                 return;
             }
             
-            var referrer = filterContext.HttpContext.Request.UrlReferrer;
+            var referrer = context.HttpContext.Request.GetReferrer();
             if (referrer == null)
             {
-                filterContext.Result = BadRequestResult;
+                context.Result = new StatusCodeResult((int)HttpStatusCode.BadRequest);
                 return;
             }
 
-            if (referrer.Host != filterContext.HttpContext.Request.Url?.Host)
+            if (!referrer.Host.Equals(context.HttpContext.Request.GetRootUri().Host, StringComparison.OrdinalIgnoreCase))
             {
-                filterContext.Result = BadRequestResult;
+                context.Result = new StatusCodeResult((int)HttpStatusCode.BadRequest);
             }
         }
    }
-
 }

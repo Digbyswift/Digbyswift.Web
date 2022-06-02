@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Digbyswift.Web.Mvc.Attributes
+namespace Digbyswift.Web.Net4.Mvc.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class BindAliasAttribute : Attribute

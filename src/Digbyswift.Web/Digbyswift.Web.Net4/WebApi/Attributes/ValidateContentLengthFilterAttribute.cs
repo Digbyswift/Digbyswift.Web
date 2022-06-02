@@ -1,9 +1,10 @@
-﻿using System.Net;
+﻿#if NET461
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Digbyswift.Web.WebApi.Attributes
+namespace Digbyswift.Web.Net4.WebApi.Attributes
 {
 	public class ValidateContentLengthFilterAttribute : ActionFilterAttribute
 	{
@@ -23,3 +24,4 @@ namespace Digbyswift.Web.WebApi.Attributes
 		}
 	}
 }
+#endif

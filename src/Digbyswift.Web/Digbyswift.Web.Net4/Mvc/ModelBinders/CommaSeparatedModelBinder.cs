@@ -1,11 +1,12 @@
-﻿using System;
+﻿#if !NET5_0_OR_GREATER
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace Digbyswift.Web.Mvc.ModelBinders
+namespace Digbyswift.Web.Net4.Mvc.ModelBinders
 {
     public class CommaSeparatedModelBinder : DefaultModelBinder
     {
@@ -50,3 +51,4 @@ namespace Digbyswift.Web.Mvc.ModelBinders
         }
     }
 }
+#endif

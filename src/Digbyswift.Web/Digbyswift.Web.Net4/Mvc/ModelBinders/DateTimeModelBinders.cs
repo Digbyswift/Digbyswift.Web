@@ -1,8 +1,9 @@
-﻿using System;
+﻿#if !NET5_0_OR_GREATER
+using System;
 using System.Globalization;
 using System.Web.Mvc;
 
-namespace Digbyswift.Web.Mvc.ModelBinders
+namespace Digbyswift.Web.Net4.Mvc.ModelBinders
 {
     public class DateTimeModelBinder : IModelBinder
     {
@@ -27,3 +28,4 @@ namespace Digbyswift.Web.Mvc.ModelBinders
         }
     }
 }
+#endif

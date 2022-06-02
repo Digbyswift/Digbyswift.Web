@@ -2,7 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digbyswift.Web", "Digbyswift.Web\Digbyswift.Web.csproj", "{FD3FD5A1-76D9-43AD-9581-D3887CDABCFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digbyswift.Web.Tests", "Digbyswift.Web.Tests\Digbyswift.Web.Tests.csproj", "{55FBFE55-BE10-4A0E-869C-FCFD71A68A0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digbyswift.Web.Net4.Tests", "Digbyswift.Web.Net4.Tests\Digbyswift.Web.Net4.Tests.csproj", "{55FBFE55-BE10-4A0E-869C-FCFD71A68A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digbyswift.Web.Net4", "Digbyswift.Web.Net4\Digbyswift.Web.Net4.csproj", "{3B119FC5-187F-4843-B42E-488D1C595FC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digbyswift.Web.Tests", "Digbyswift.Web.Tests\Digbyswift.Web.Tests.csproj", "{C5313967-B716-4414-95A1-81F53B4CF149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,13 @@ Global
 		{55FBFE55-BE10-4A0E-869C-FCFD71A68A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FBFE55-BE10-4A0E-869C-FCFD71A68A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FBFE55-BE10-4A0E-869C-FCFD71A68A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B119FC5-187F-4843-B42E-488D1C595FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B119FC5-187F-4843-B42E-488D1C595FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B119FC5-187F-4843-B42E-488D1C595FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B119FC5-187F-4843-B42E-488D1C595FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5313967-B716-4414-95A1-81F53B4CF149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5313967-B716-4414-95A1-81F53B4CF149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5313967-B716-4414-95A1-81F53B4CF149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5313967-B716-4414-95A1-81F53B4CF149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

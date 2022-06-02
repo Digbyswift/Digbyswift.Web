@@ -1,51 +1,53 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Digbyswift.Web.Mvc.Attributes
 {
-    public sealed class ImportModelState : ActionFilterAttribute
+    public sealed class ImportModelStateAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (filterContext.Controller.TempData[ExportModelState.TempDataKey] is ModelStateDictionary modelState)
+            var controller = context.Controller as Controller;
+            if (controller?.TempData[ExportModelStateAttribute.TempDataKey] is ModelStateDictionary modelState)
             {
                 // Only Import if we are viewing
-                if (filterContext.Result is ViewResult)
+                if (context.Result is ViewResult)
                 {
-                    filterContext.Controller.ViewData.ModelState.Merge(modelState);
+                    controller.ViewData.ModelState.Merge(modelState);
                 }
                 else
                 {
-                    filterContext.Controller.TempData.Remove(ExportModelState.TempDataKey);
+                    controller.TempData.Remove(ExportModelStateAttribute.TempDataKey);
                 }
             }
 
-            base.OnActionExecuted(filterContext);
+            base.OnActionExecuted(context);
         }
     }
 
-    public class ExportModelState : ActionFilterAttribute
+    public class ExportModelStateAttribute : ActionFilterAttribute
     {
         public const string TempDataKey = "ExportModelStateToTempData";
 
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (filterContext.Controller.ViewData.ModelState.IsValid == false)
+            if (!(context.Controller is Controller controller))
+                return;
+            
+            if (!controller.ViewData.ModelState.IsValid && IsValidResult(context.Result))
             {
-                if (IsValidResult(filterContext.Result))
-                {
-                    filterContext.Controller.TempData[TempDataKey] = filterContext.Controller.ViewData.ModelState;
-                }
+                controller.TempData[TempDataKey] = controller.ViewData.ModelState;
             }
 
-            base.OnActionExecuted(filterContext);
+            base.OnActionExecuted(context);
         }
 
-        public virtual bool IsValidResult(ActionResult result)
+        public virtual bool IsValidResult(IActionResult result)
         {
             return result is RedirectResult ||
                    result is RedirectToRouteResult ||
                    result is JsonResult;
         }
-
     }
 }

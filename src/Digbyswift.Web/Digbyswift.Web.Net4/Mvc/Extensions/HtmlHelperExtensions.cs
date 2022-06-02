@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
+﻿#if NET462
 using System.Web.Routing;
+#endif
 
-namespace Digbyswift.Web.Mvc.Extensions
+namespace Digbyswift.Web.Net4.Mvc.Extensions
 {
     public static class HtmlHelperExtensions
     {
+
+#if NET462
         public static MvcHtmlString CheckBoxFor<TModel>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, bool>> expression, bool singleInput = true, object htmlAttributes = null)
         {
             if (!singleInput)
@@ -55,6 +54,7 @@ namespace Digbyswift.Web.Mvc.Extensions
 
             return MvcHtmlString.Create(ulTag.ToString());
         }
+#endif
 
     }
 }

@@ -1,18 +1,16 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Digbyswift.Web.WebApi.Attributes
 {
-    public class ValidateMimeMultipartContentFilterAttribute : ActionFilterAttribute
+    public class ValidateAsMultipartContentAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!actionContext.Request.Content.IsMimeMultipartContent())
+            if (context.HttpContext.Request.GetMultipartBoundary() == null)
             {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                context.Result = new UnsupportedMediaTypeResult();
             }
         }
     }

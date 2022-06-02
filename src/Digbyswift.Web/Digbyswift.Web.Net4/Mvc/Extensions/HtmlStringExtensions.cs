@@ -1,11 +1,8 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Digbyswift.Web.Mvc.Extensions
+﻿namespace Digbyswift.Web.Net4.Mvc.Extensions
 {
     public static class HtmlStringExtensions
     {
+#if NET462
         public static IHtmlString AsRichText(this string value)
         {
             if (String.IsNullOrWhiteSpace(value))
@@ -53,5 +50,6 @@ namespace Digbyswift.Web.Mvc.Extensions
 
             throw new NotImplementedException($"{instance.GetType().FullName} not supported.");
         }
+#endif
     }
 }

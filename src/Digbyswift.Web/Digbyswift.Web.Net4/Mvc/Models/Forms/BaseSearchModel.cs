@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Web.Mvc;
+using Digbyswift.Web.Net4.Mvc.Attributes;
+using Digbyswift.Web.Net4.Mvc.ModelBinders;
 
-namespace Digbyswift.Web.Mvc.Models.Forms
+namespace Digbyswift.Web.Net4.Mvc.Models.Forms
 {
+    [ModelBinder(typeof(AliasModelBinder))]
     public class BaseSearchModel
     {
         private int _page;
-        [FromQuery(Name = "p")]
+        [BindAlias("p")]
         public int Page
         {
             get => _page < 1 ? 1 : _page;
@@ -13,7 +16,7 @@ namespace Digbyswift.Web.Mvc.Models.Forms
         }
 
         private int _pageSize;
-        [FromQuery(Name = "s")]
+        [BindAlias("s")]
         public int PageSize
         {
             get => _pageSize < 1 ? 1 : _pageSize;

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Web.Mvc;
-using Digbyswift.Web.Extensions;
-using Digbyswift.Web.Mvc.Extensions;
+using Digbyswift.Web.Net4.Extensions;
 using Newtonsoft.Json;
 
-namespace Digbyswift.Web.Mvc.ActionResults
+namespace Digbyswift.Web.Net4.Mvc.ActionResults
 {
     public class CustomJsonResult : JsonResult
     {

@@ -1,18 +1,12 @@
-﻿using System;
+﻿using Digbyswift.Core.RegularExpressions;
+using System;
 using System.Web;
 using Digbyswift.Core.Constants;
-using Digbyswift.Core.RegularExpressions;
-using Digbyswift.Web.Extensions;
+using Digbyswift.Web.Net4.Constants;
 
-namespace Digbyswift.Web.Mvc.Extensions
+namespace Digbyswift.Web.Net4.Extensions
 {
-    public static class HttpMethod
-    {
-        public const string Get = "Get";
-        public const string Post = "Post";
-    }
-
-	public static class HttpRequestExtensions
+    public static class HttpRequestExtensions
 	{
         public static HttpRequestBase AsBase(this HttpRequest request)
         {
@@ -29,7 +23,10 @@ namespace Digbyswift.Web.Mvc.Extensions
 
         public static string RootUrl(this HttpRequestBase request)
         {
-            return request.Url?.BaseUrl();
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+            
+            return request.Url.BaseUrl();
         }
         
         public static string IpAddress(this HttpRequest request)
@@ -39,6 +36,9 @@ namespace Digbyswift.Web.Mvc.Extensions
 
         public static string IpAddress(this HttpRequestBase request)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+            
             string ipAddress = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
             if (!String.IsNullOrEmpty(ipAddress))
@@ -53,16 +53,6 @@ namespace Digbyswift.Web.Mvc.Extensions
             return request.ServerVariables["REMOTE_ADDR"];
         }
 
-        public static bool IsInternalReferrer(this HttpRequest request)
-        {
-            return request.AsBase().IsInternalReferrer();
-        }
-
-        public static bool IsInternalReferrer(this HttpRequestBase request)
-        {
-            return request.UrlReferrer?.ToString().StartsWith(request.RootUrl()) ?? false;
-        }
-        
         public static bool PathHasExtension(this HttpRequest request)
         {
             return request.AsBase().PathHasExtension();
@@ -86,7 +76,7 @@ namespace Digbyswift.Web.Mvc.Extensions
 
         public static bool IsGetMethod(this HttpRequestBase request)
         {
-            return request.HttpMethod.Equals(HttpMethod.Get, StringComparison.OrdinalIgnoreCase);
+            return request.HttpMethod.Equals(HttpConstants.Methods.Get, StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool IsPostMethod(this HttpRequest request)
@@ -96,19 +86,32 @@ namespace Digbyswift.Web.Mvc.Extensions
 
         public static bool IsPostMethod(this HttpRequestBase request)
         {
-            return request.HttpMethod.Equals(HttpMethod.Post, StringComparison.OrdinalIgnoreCase);
+            return request.HttpMethod.Equals(HttpConstants.Methods.Post, StringComparison.OrdinalIgnoreCase);
+        }
+        
+        public static bool HasInternalReferrer(this HttpRequest request)
+        {
+            return request.AsBase().HasInternalReferrer();
+        }
+
+        public static bool HasInternalReferrer(this HttpRequestBase request)
+        {
+            return request.UrlReferrer?.ToString().StartsWith(request.RootUrl()) ?? false;
         }
 
         public static Uri UrlReferrerOrDefault(this HttpRequestBase request, string defaultReferrer = StringConstants.ForwardSlash)
         {
-            if (request.UrlReferrer != null && request.UrlReferrer.ToString().IsInternalUrl())
+            if (request.UrlReferrer != null && request.HasInternalReferrer())
                 return request.UrlReferrer;
+            
+            if (defaultReferrer.StartsWith(Uri.UriSchemeHttps) || defaultReferrer.StartsWith(Uri.UriSchemeHttp))
+                return new Uri(defaultReferrer);
 
             var uriBuilder = new UriBuilder()
             {
-                Path = defaultReferrer,
                 Scheme = request.Url.Scheme,
-                Host = request.Url.Host
+                Host = request.Url.Host,
+                Path = defaultReferrer,
             };
 
             return uriBuilder.Uri;
@@ -165,6 +168,6 @@ namespace Digbyswift.Web.Mvc.Extensions
                 ? $"{pagePathWithoutQueryString}?{replaceKey}={value}&{newQueryString}"
                 : $"{pagePathWithoutQueryString}?{replaceKey}={value}";
         }
-
+       
 	}
 }
