@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#if NETSTANDARD2_1        
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+#else
+using System;
+using System.Net;
+using System.Web.Mvc;
+#endif
 
 namespace Digbyswift.Web.Mvc.Attributes
 {
@@ -43,11 +49,20 @@ namespace Digbyswift.Web.Mvc.Attributes
             base.OnActionExecuted(context);
         }
 
+#if NETSTANDARD2_1        
         public virtual bool IsValidResult(IActionResult result)
         {
             return result is RedirectResult ||
                    result is RedirectToRouteResult ||
                    result is JsonResult;
         }
+#else
+        public virtual bool IsValidResult(ActionResult result)
+        {
+            return result is RedirectResult ||
+                   result is RedirectToRouteResult ||
+                   result is JsonResult;
+        }
+#endif
     }
 }

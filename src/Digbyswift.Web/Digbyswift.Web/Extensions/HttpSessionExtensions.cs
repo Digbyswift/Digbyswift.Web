@@ -1,7 +1,8 @@
-﻿using System;
+﻿#if NETSTANDARD2_1
+using System;
 using System.Linq;
-using System.Text.Json;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace Digbyswift.Web.Extensions
 {
@@ -18,7 +19,7 @@ namespace Digbyswift.Web.Extensions
 
             try
             {
-                return JsonSerializer.Deserialize<T>(workingValue);
+                return JsonConvert.DeserializeObject<T>(workingValue);
             }
             catch
             {
@@ -31,10 +32,10 @@ namespace Digbyswift.Web.Extensions
             if (value == null)
                 return;
             
-            string serializedValue = JsonSerializer.Serialize(value);
+            string serializedValue = JsonConvert.SerializeObject(value);
             
             session.SetString(key, serializedValue);
         }
-
     }
 }
+#endif

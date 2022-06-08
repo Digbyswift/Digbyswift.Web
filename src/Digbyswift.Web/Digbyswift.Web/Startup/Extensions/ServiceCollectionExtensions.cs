@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿#if NETSTANDARD2_1
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebMarkupMin.AspNetCore5;
+using WebMarkupMin.AspNetCore2;
 using WebMarkupMin.Core;
 
 namespace Digbyswift.Web.Startup.Extensions
@@ -30,3 +31,4 @@ namespace Digbyswift.Web.Startup.Extensions
 
     }
 }
+#endif

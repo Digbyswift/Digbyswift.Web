@@ -14,20 +14,27 @@
         <FileVersion>2.0.0</FileVersion>
         <LangVersion>8</LangVersion>
         <PackageIcon>package-icon.png</PackageIcon>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFrameworks>net462;netstandard2.1</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Digbyswift.Core" Version="1.0.3" />
       <PackageReference Include="Digbyswift.Extensions" Version="1.0.5" />
+      <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.3" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.3" />
       <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.4" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
       <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="1.0.4" />
+      <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.0.3" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
       <PackageReference Include="morelinq" Version="3.3.2" />
       <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
       <PackageReference Include="NSubstitute" Version="4.3.0" />
-      <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.11.0" />
+      <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.10.0" />
       <PackageReference Include="X.PagedList" Version="8.0.7" />
     </ItemGroup>
 
@@ -37,6 +44,10 @@
         <PackagePath></PackagePath>
         <Link>package-icon.png</Link>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.Web" />
     </ItemGroup>
 
 </Project>

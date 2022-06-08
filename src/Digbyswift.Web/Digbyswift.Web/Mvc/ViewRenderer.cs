@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NETSTANDARD2_1
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
@@ -24,7 +25,7 @@ namespace Digbyswift.Web.Mvc
             var view = viewEngineResult.View;
             controller.ViewData.Model = model;
 
-            await using var writer = new StringWriter();
+            using var writer = new StringWriter();
             var viewContext = new ViewContext(
                 controller.ControllerContext,
                 view,
@@ -47,7 +48,7 @@ namespace Digbyswift.Web.Mvc
             var view = viewEngineResult.View;
             component.ViewData.Model = model;
 
-            await using var writer = new StringWriter();
+            using var writer = new StringWriter();
             var viewContext = new ViewContext(
                 component.ViewContext,
                 view,
@@ -64,3 +65,4 @@ namespace Digbyswift.Web.Mvc
         }
     }
 }
+#endif

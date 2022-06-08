@@ -1,4 +1,9 @@
 ﻿using System;
+#if NET462
+using System.Web;
+using System.Web.Routing;
+using System.Linq;
+#endif
 
 namespace Digbyswift.Web.Extensions
 {
@@ -18,5 +23,23 @@ namespace Digbyswift.Web.Extensions
         {
             return $"{uri.GetLeftPart(UriPartial.Authority)}{uri.AbsolutePath}";
         }
+
+#if NET462
+        public static string ReplaceQueryString(this Uri uri, object newValues)
+        {
+            var values = new RouteValueDictionary(newValues);
+            var query = HttpUtility.ParseQueryString(uri.Query);
+            foreach (var key in values.Keys)
+            {
+                query[key] = values[key].ToString();
+            }
+
+            var builder = new UriBuilder(uri)
+            {
+                Query = string.Join("&", query.AllKeys.Select(x => string.Join("=", x, query[(string)x].ToString())))
+            };
+            return builder.ToString();
+        }
+#endif
     }
 }

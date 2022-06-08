@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+#if NETSTANDARD2_1
 using Microsoft.AspNetCore.Mvc.Rendering;
+#else
+using System.Web.Mvc;
+#endif
 using MoreLinq.Extensions;
 
 namespace Digbyswift.Web.Mvc.Extensions

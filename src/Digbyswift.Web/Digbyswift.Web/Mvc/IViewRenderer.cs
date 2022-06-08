@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿#if NETSTANDARD2_1
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Digbyswift.Web.Mvc
@@ -9,3 +10,4 @@ namespace Digbyswift.Web.Mvc
         Task<string> RenderAsStringAsync<TModel>(ViewComponent component, string viewName, TModel model);
     }
 }
+#endif
